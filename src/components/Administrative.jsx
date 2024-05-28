@@ -23,9 +23,10 @@ const names = [
   { id: 18, name: 'Rupert', imageUrl: 'https://via.placeholder.com/40' },
   { id: 19, name: 'Sybil', imageUrl: 'https://via.placeholder.com/40' },
   { id: 20, name: 'Trudy', imageUrl: 'https://via.placeholder.com/40' },
+ 
 ];
 
-const Nomination = () => {
+const Administrative = () => {
   return (
     <div className="flex flex-col h-screen">
       {/* Blue header with Dashboard heading and Profile button */}
@@ -45,6 +46,7 @@ const Nomination = () => {
 
         {/* Main Content */}
         <div className="flex-1 p-4 overflow-y-auto">
+            <div><h1>Administrative Workers</h1></div>
           {/* Table */}
           <div className="container mx-auto mt-10">
             <table className="min-w-full bg-white">
@@ -92,4 +94,4 @@ const Nomination = () => {
   );
 };
 
-export default Nomination;
+export default Administrative;

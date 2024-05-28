@@ -44,7 +44,7 @@ function login() {
                 placeholder="Enter your password"
               />
             </div>
-            <Link to="/dashboard">
+            <Link to="/Dashboard">
               <button className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
                 Login
               </button>
