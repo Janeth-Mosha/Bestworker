@@ -126,7 +126,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="/results"
+                to="/Result"
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
               >
                 <i className="bi bi-bar-chart mr-2"></i> Results

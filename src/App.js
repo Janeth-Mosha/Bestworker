@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import Side from './components/Side';
 import DashboardPage from './components/Dashboard';
 import Selection from './components/Selection';
+import Result from './components/Result';
 import Nomination from './components/Nomination';
 import Vote from './components/Vote';
 import Administrative from './components/Administrative'
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Nomination" element={<Nomination/>} />
         <Route path="/Administrative" element={<Administrative/>} />
         <Route path="/Vote" element={<Vote/>} />
+        <Route path="/Result" element={<Result/>} />
       </Routes>
     </Router>
     </div>
