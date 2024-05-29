@@ -5,9 +5,6 @@ import Side from "./Side"; // Import the Sidebar component
 
 const Dashboard = () => {
   
-
- 
-
   return (
     <div className="flex flex-col min-h-screen">
       {/* Blue header with Dashboard heading and Profile button */}

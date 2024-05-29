@@ -1,36 +1,13 @@
 import React from "react";
 import Sidebar from "./Sidebar"; // Import the Sidebar component
-import { Bar } from "react-chartjs-2"; // Import the Bar chart component
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const Result= () => {
-  const data = {
-    labels: ['January', 'February', 'March', 'April'],
-    datasets: [
-      {
-        label: 'Votes',
-        data: [65, 59, 80, 81],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
 
-  const options = {
-    responsive: true, // Enable responsiveness for the chart
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Total Votes',
-      },
-    },
-  };
+
+const Result = () => {
+ 
+
+ 
 
   return (
     <div className="Result flex flex-col min-h-screen"> {/* Main container */}
@@ -70,10 +47,7 @@ const Result= () => {
           </div>
 
           {/* Chart */}
-          <div className="bg-white shadow-lg rounded-lg p-4 mb-6">
-            <h3 className="text-xl font-bold mb-4">Total Votes</h3>
-            <Bar data={data} options={options} />
-          </div>
+          
         </main>
       </div>
     </div>
