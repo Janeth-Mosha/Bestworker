@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // If using React Router
+import { Link } from "react-router-dom";
+import Nomination from "./Nomination";
 
-const Sidebar = () => {
+
+const Sidebar = ({ setCategory }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isNominationOpen, setIsNominationOpen] = useState(false);
   const [isVoteOpen, setIsVoteOpen] = useState(false);
@@ -36,58 +38,68 @@ const Sidebar = () => {
       >
         <div className="mt-8">
           <ul>
-            <li>
-              <Link
-                to="/dashboard"
+          <li>
+            <Link
+                to="/Dashboard"
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
               >
-                <i className="bi bi-house-door mr-2"></i> Dashboard
+                <i className="bi bi-bar-chart mr-2"></i> Dashboard
               </Link>
             </li>
+
             <li>
-              <Link
+            <Link
                 to="/Selection"
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
               >
-                <i className="bi bi-funnel mr-2"></i> Selection Criteria
+                <i className="bi bi-bar-chart mr-2"></i> Selection
               </Link>
-            </li>
-            <li>
+              </li>
+
+              <li>
               <div
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
                 onClick={toggleNomination}
               >
-                <i className="bi bi-pencil-square mr-2"></i> Nomination
+                <i className="bi bi-pencil-square mr-2"></i> Nominations
               </div>
               {isNominationOpen && (
                 <ul className="pl-8">
+                  <Link to="/Administrative">
                   <li>
-                    <Link
-                      to="/Administrative"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+  
+                      
                     >
                       Administrative
-                    </Link>
-                  </li>
+                    </div>
+                  </li></Link>
                   <li>
-                    <Link
-                      to="/nomination/junior"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <Link to="/Junior">
+
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+                    
                     >
                       Junior
+                    </div>
                     </Link>
+                    
                   </li>
+                  <Link to="/Senior">
                   <li>
-                    <Link
-                      to="/nomination/senior"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+                    
                     >
                       Senior
-                    </Link>
-                  </li>
+                    </div>
+                  </li></Link>
                 </ul>
               )}
             </li>
+
             <li>
               <div
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
@@ -98,45 +110,52 @@ const Sidebar = () => {
               {isVoteOpen && (
                 <ul className="pl-8">
                   <li>
-                    <Link
-                      to="/Vote"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+                      onClick={() => setCategory("administrative")}
                     >
                       Administrative
-                    </Link>
+                    </div>
                   </li>
+
                   <li>
-                    <Link
-                      to="/vote/junior"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+                      onClick={() => setCategory("junior")}
                     >
                       Junior
-                    </Link>
+                    </div>
                   </li>
+
                   <li>
-                    <Link
-                      to="/vote/senior"
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
+                    <div
+                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
+                      onClick={() => setCategory("senior")}
                     >
                       Senior
-                    </Link>
+                    </div>
                   </li>
                 </ul>
               )}
             </li>
+
             <li>
-              <Link
+            <Link
                 to="/Result"
                 className="flex items-center py-2 px-4 text-white hover:bg-gray-700"
               >
                 <i className="bi bi-bar-chart mr-2"></i> Results
               </Link>
             </li>
+
           </ul>
+         
         </div>
       </div>
     </div>
-  );
+   
+            );
+ 
 };
 
 export default Sidebar;

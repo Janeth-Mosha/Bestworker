@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import useFetchWorkers from "./useFetchWorkers";
 import Sidebar from "./Sidebar";
 
-const Administrative = ({ user }) => {
-  const { data: workers, isError, error, isLoading } = useFetchWorkers("administrative");
+const Junior = ({ user }) => {
+  
+  const { data: workers, isError, error, isLoading } = useFetchWorkers("junior");
   const [selectedChoices, setSelectedChoices] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Administrative = ({ user }) => {
           ? 3
           : choice === "Second Choice"
           ? 2
+
           : 1;
     }
 
@@ -85,7 +87,7 @@ const Administrative = ({ user }) => {
           )}
           {!isLoading && !isError && workers && (
             <div className="container mx-auto mt-10">
-              <h2 className="text-2xl mb-4">Administrative Worker Nominations</h2>
+              <h2 className="text-2xl mb-4">Junior Worker Nominations</h2>
               <table className="min-w-full bg-white">
                 <thead>
                   <tr>
@@ -153,4 +155,4 @@ const Administrative = ({ user }) => {
   );
 };
 
-export default Administrative;
+export default Junior;

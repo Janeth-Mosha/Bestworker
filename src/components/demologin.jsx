@@ -1,18 +1,37 @@
-import React from "react";
-import useFetchWorkers from "./useFetchWorkers";
+// src/components/Nomination.jsx
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 
-const Nomination = () => {
+const NominationCategory = () => {
+  const { category } = useParams();
+  const [workers, setWorkers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const { data: workers,isError, error, isLoading } = useFetchWorkers("junior");
+  useEffect(() => {
+    const fetchWorkers = async () => {
+      setLoading(true);
+      setError("");
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+      try {
+        const response = await fetch(
+          "https://udsmbestworker.onrender.com/workers/by-category?category=${category}"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch workers");
+        }
+        const data = await response.json();
+        setWorkers(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+    fetchWorkers();
+  }, [category]);
 
   return (
     <div className="flex flex-col h-screen">
@@ -27,14 +46,9 @@ const Nomination = () => {
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
         <div className="flex-1 p-4 overflow-y-auto">
-          {isLoading && <p>Loading...</p>}
-          {isError && (
-            <div className="text-red-500">
-              <p>{error.message}</p>
-              <pre>{error.stack}</pre>
-            </div>
-          )}
-          {!isLoading && !isError && workers && (
+          {loading && <p>Loading...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {!loading && !error && (
             <div className="container mx-auto mt-10">
               <table className="min-w-full bg-white">
                 <thead>
@@ -69,10 +83,16 @@ const Nomination = () => {
               </table>
             </div>
           )}
+          <div className="flex justify-end mt-4">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-full">
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Nomination;
+export default NominationCategory;
+

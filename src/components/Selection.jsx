@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom"; // If using React Router
 import Side from "./Side";
 
+
 const Selection = () => {
   const rules = [
     "All eligible voters must nominate three candidates in order of ranking preferences.",
@@ -51,9 +52,9 @@ const Selection = () => {
             </table>
           </div>
 
-          {/* Next button */}
+       
           <div className="flex justify-end mt-4">
-            <Link to="/Nomination">
+            <Link to="/Sidebar">
               <button className="bg-blue-500 text-white py-2 px-4 rounded-full">
                 Next
               </button>
