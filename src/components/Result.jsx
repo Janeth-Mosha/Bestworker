@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar"; // Import the Sidebar component
+import { useCollegeResults, useUniversityResults } from "./Hooks/fetchResults"; // Adjust the path accordingly
 
 const Result = () => {
   const backgroundImageUrl = "udogo.png";
   const [showCollegeResult, setShowCollegeResult] = useState(false);
   const [showUniversityResult, setShowUniversityResult] = useState(false);
+
+  const { data: collegeResults, isLoading: isLoadingCollegeResults, isError: isErrorCollegeResults } = useCollegeResults(showCollegeResult);
+
+  const { data: universityResults, isLoading: isLoadingUniversityResults, isError: isErrorUniversityResults } = useUniversityResults(showUniversityResult);
 
   const toggleCollegeResult = () => {
     setShowCollegeResult(!showCollegeResult);
@@ -12,6 +17,30 @@ const Result = () => {
 
   const toggleUniversityResult = () => {
     setShowUniversityResult(!showUniversityResult);
+  };
+
+  const renderCategoryResults = (results, category) => {
+    const result = results.find(r => r.category === category);
+    return result ? (
+      <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+        <h4 className="text-xl flex items-start font-bold mb-2">Best {category.charAt(0).toUpperCase() + category.slice(1)} Worker</h4>
+        <div className="flex items-start">
+          <div className="flex-shrink-0">
+            <img src={`https://via.placeholder.com/50`} alt={result.name} className="w-12 h-12 rounded-full"/>
+          </div>
+          <div className="ml-4">
+            <div className="text-lg font-semibold">{result.name}</div>
+            
+            <div className="text-sm text-blue-500 font-semibold">{result.percentage}% of votes</div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+        <h4 className="text-lg font-bold mb-2">Best {category.charAt(0).toUpperCase() + category.slice(1)} Worker</h4>
+        <p>Not yet found</p>
+      </div>
+    );
   };
 
   return (
@@ -76,18 +105,17 @@ const Result = () => {
               </button>
               {showCollegeResult && (
                 <div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Administrative Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Junior Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Senior Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
+                  {isLoadingCollegeResults ? (
+                    <div>Loading...</div>
+                  ) : isErrorCollegeResults ? (
+                    <div>Error loading college results</div>
+                  ) : (
+                    <>
+                      {renderCategoryResults(collegeResults, "administrative")}
+                      {renderCategoryResults(collegeResults, "junior")}
+                      {renderCategoryResults(collegeResults, "senior")}
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -101,18 +129,17 @@ const Result = () => {
               </button>
               {showUniversityResult && (
                 <div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Administrative Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Junior Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
-                  <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
-                    <h4 className="text-lg font-bold mb-2">Best Senior Worker</h4>
-                    <p>Results go here...</p>
-                  </div>
+                  {isLoadingUniversityResults ? (
+                    <div>Loading...</div>
+                  ) : isErrorUniversityResults ? (
+                    <div>Error loading university results</div>
+                  ) : (
+                    <>
+                      {renderCategoryResults(universityResults, "administrative")}
+                      {renderCategoryResults(universityResults, "junior")}
+                      {renderCategoryResults(universityResults, "senior")}
+                    </>
+                  )}
                 </div>
               )}
             </div>

@@ -9,10 +9,8 @@ import DashboardPage from "./components/Dashboard";
 import Selection from "./components/Selection";
 import Result from "./components/Result";
 import Nomination from "./components/Nomination";
+import Welcome from "./components/Welcome"
 import Vote from "./components/Vote";
-import Administrative from "./components/Administrative";
-import Junior from "./components/Junior";
-import Senior from "./components/Senior";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -31,10 +29,8 @@ const App = () => {
               <Route path="/Selection" element={<Selection />} />
               <Route path="/Nomination/:category" element={<Nomination />} />
               <Route path="/Sidebar" element={<Sidebar />} />
-              <Route path="/Junior" element={<Junior />} />
-              <Route path="/Administrative" element={<Administrative/>} />
-              <Route path="/Senior" element={<Senior />} />
-              <Route path="/Vote" element={<Vote />} />
+              <Route path="/Welcome" element={<Welcome />} />
+              <Route path="/Vote/:category" element={<Vote />} />
               <Route path="/Result" element={<Result />} />
             </Routes>
           </div>

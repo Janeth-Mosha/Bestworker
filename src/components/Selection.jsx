@@ -54,7 +54,7 @@ const Selection = () => {
 
        
           <div className="flex justify-end mt-4">
-            <Link to="/Sidebar">
+            <Link to="/Welcome">
               <button className="bg-blue-500 text-white py-2 px-4 rounded-full">
                 Next
               </button>

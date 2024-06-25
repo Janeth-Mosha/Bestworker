@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Nomination from "./Nomination";
 
 
 const Sidebar = ({ setCategory }) => {
@@ -65,7 +64,7 @@ const Sidebar = ({ setCategory }) => {
               </div>
               {isNominationOpen && (
                 <ul className="pl-8">
-                  <Link to="/Administrative">
+                  <Link to="/Nomination/administrative">
                   <li>
                     <div
                       className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
@@ -76,7 +75,7 @@ const Sidebar = ({ setCategory }) => {
                     </div>
                   </li></Link>
                   <li>
-                    <Link to="/Junior">
+                    <Link to="/Nomination/junior">
 
                     <div
                       className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
@@ -87,7 +86,7 @@ const Sidebar = ({ setCategory }) => {
                     </Link>
                     
                   </li>
-                  <Link to="/Senior">
+                  <Link to="/Nomination/senior">
                   <li>
                     <div
                       className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
@@ -109,32 +108,29 @@ const Sidebar = ({ setCategory }) => {
               </div>
               {isVoteOpen && (
                 <ul className="pl-8">
-                  <li>
-                    <div
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
-                      onClick={() => setCategory("administrative")}
-                    >
-                      Administrative
-                    </div>
-                  </li>
+          <Link to="/Vote/administrative">
+            <li>
+              <div className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer">
+                Administrative
+              </div>
+            </li>
+          </Link>
+          <Link to="/Vote/junior">
+            <li>
+              <div className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer">
+                Junior
+              </div>
+            </li>
+          </Link>
 
-                  <li>
-                    <div
-                      className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
-                      onClick={() => setCategory("junior")}
-                    >
-                      Junior
-                    </div>
-                  </li>
 
-                  <li>
+                  <Link to="/Vote/senior">  <li>
                     <div
                       className="flex items-center py-2 px-4 text-white hover:bg-gray-700 cursor-pointer"
-                      onClick={() => setCategory("senior")}
                     >
                       Senior
                     </div>
-                  </li>
+                  </li></Link>
                 </ul>
               )}
             </li>
